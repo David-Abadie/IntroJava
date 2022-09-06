@@ -21,7 +21,7 @@ public class Ejercicio18 {
             }
             System.out.println("");
         }
-        System.out.println("Esta es su transpuesta:"); //mostrar transpuesta
+        System.out.println("Esta es su traspuesta:"); //mostrar traspuesta
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 System.out.print("["+matriz[j][i]+"]");
