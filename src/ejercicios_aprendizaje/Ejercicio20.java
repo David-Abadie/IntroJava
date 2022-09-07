@@ -13,51 +13,47 @@ public class Ejercicio20 {
     public static void main(String[] args){
         Scanner leer = new Scanner(System.in);   
         int [][] matriz = new int [3][3];
-        int [] vector = new int [3];
-        int sumaFila = 0; int sumaColumna = 0; int cont = 0;
-        int diagonal1 = 0; int diagonal2 = 0; int cont2 = 0;    
+        int sumaFila = 0; int sumaColumna = 0;
+        int diagonal1 = 0; int diagonal2 = 0;    
         
-        
+        //rellenar la matriz
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 do{
                 System.out.print("Ingrese elemento de la posicion "+i+","+j+": ");
                  matriz[i][j] = leer.nextInt();
-                }while(matriz[i][j]<=0 || matriz[i][j]>9);  
-                sumaFila += matriz[i][j];
-                sumaColumna += matriz[j][i];
-                vector[i] += matriz[i][j];
+                }while(matriz[i][j]<=0 || matriz[i][j]>9);        
             }             
-        } System.out.println("");
-        
-        for (int i = 0; i < 3; i++) {
-            for (int j = 2; j == 0; j--) {
-                 diagonal2 += matriz[i][j];        
-            } 
         }
-        
+        //sumar filas y columnas
         for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) { 
-                if (sumaColumna!=sumaFila || sumaFila != diagonal2){
-                cont = 0;
-                cont2 = 0;
-                sumaFila = 0;
-                sumaColumna = 0;
-                }else{
-                cont++;
-                cont2++;
-                }
+            sumaFila = 0;
+            sumaColumna = 0;
+            for (int j = 0; j < 3; j++) {
+              sumaFila += matriz[i][j]; //+= es el nuevo valor que se le suma al anterior
+              sumaColumna += matriz[j][i];  
             }
         }
-        
-        if (cont == matriz.length && cont2 == matriz.length) {
-                System.out.println("La matriz es mágica");
-                System.out.println("La suma es: "+vector[0]);   
-            } else{ 
-                    System.out.println("La matriz no es mágica");
+        //sumar diagonales
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j <3; j++) {
+                if (i == j) {
+                    diagonal1 += matriz[i][j];
                 }
+                if (i + j == 2) {
+                    diagonal2 += matriz[i][j];  
+                }
+            } 
+        }
+        //verificar las sumas
+        if (sumaFila == sumaColumna && sumaFila == diagonal1 && sumaFila == diagonal2) {
+            System.out.println("\n La matríz es mágica.");
+            System.out.println("\n La suma de sus filas, columnas y diagonales es: "+sumaFila+"\n");
+        } else{
+            System.out.println("\n La matríz no es mágica. \n");
+        }
         
-        System.out.println("");
+
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                     System.out.print("["+matriz[i][j]+"]");   
